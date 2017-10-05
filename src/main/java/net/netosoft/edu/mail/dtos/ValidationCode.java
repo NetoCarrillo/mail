@@ -1,4 +1,4 @@
-package net.netosoft.edu.mail.beans;
+package net.netosoft.edu.mail.dtos;
 
 /**
  *
@@ -23,5 +23,4 @@ public class ValidationCode extends MailModel{
 				.append("code:").append(code).append('}')
 				.toString();
 	}
-	
 }

@@ -1,4 +1,4 @@
-package net.netosoft.edu.mail.beans;
+package net.netosoft.edu.mail.dtos;
 
 import java.util.Date;
 

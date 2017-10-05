@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Map;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import net.netosoft.edu.mail.beans.MailModel;
+import net.netosoft.edu.mail.dtos.MailModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +44,7 @@ public class EmailServiceImpl implements EmailService{
 	@Override
 	public void sendEmail(MailModel request){
 		LOGGER.debug("from: {} \t to:{}", sender, request.getEmailAddress());
+		LOGGER.debug("{}", request);
 
 		try{
 			MimeMessage message = mailSender.createMimeMessage();
