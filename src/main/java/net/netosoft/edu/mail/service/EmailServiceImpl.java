@@ -27,7 +27,13 @@ public class EmailServiceImpl implements EmailService{
 			LoggerFactory.getLogger(EmailServiceImpl.class);
 
 	@Value("${spring.mail.username}")
+	private String sender;
+	
+	@Value("${spring.mail.from}")
 	private String from;
+	
+	@Value("${mail.template.main.path}")
+	private String mainTemplate;
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -37,26 +43,25 @@ public class EmailServiceImpl implements EmailService{
 	
 	@Override
 	public void sendEmail(MailModel request){
-		LOGGER.debug("from: {} \t to:{}", from, request.getEmailAddress());
+		LOGGER.debug("from: {} \t to:{}", sender, request.getEmailAddress());
 
 		try{
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, "UTF-8");
-			helper.setTo(request.getEmailAddress());
-			helper.setFrom(from);
-			helper.setText(
-					buildContent(request.getTemplate(), request),
-					true);
+			helper.setTo(request.getEmailAddress().split(","));
+			helper.setFrom(sender, from);
+			helper.setSubject(request.getEmailSubject());
+			helper.setText(buildContent(request), true);
 			mailSender.send(message);
 		}catch(MessagingException | IOException | TemplateException ex){
 			LOGGER.error(ex.getMessage(), ex);
 		}
 	}
 	
-	private String buildContent(String tmplName, Object model)
+	private String buildContent(Object model)
 						 throws IOException, TemplateException{
 		
-		Template template = fmConfig.getTemplate(tmplName);
+		Template template = fmConfig.getTemplate(mainTemplate);
 		return FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
 	}
 }

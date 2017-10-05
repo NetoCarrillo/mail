@@ -6,7 +6,7 @@ import java.util.Date;
  *
  * @author ernesto
  */
-public class UnsuccessfulCharge extends MailModel{
+public class TicketCharge extends MailModel{
 	
 	private String ticketNumber;
 	private String parkingLot;
