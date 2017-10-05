@@ -14,14 +14,14 @@ public class EmailConfig{
 	}
 
 	@Bean
-	@ConfigurationProperties("mail.template.user-registry")
-	public MailContentTemplate userRegistryMailTemplate(){
+	@ConfigurationProperties("mail.template.user-registration")
+	public MailContentTemplate userRegistrationMailTemplate(){
 		return new MailContentTemplate();
 	}
 	
 	@Bean
-	@ConfigurationProperties("mail.template.ticket-registry")
-	public MailContentTemplate ticketRegistryMailTemplate(){
+	@ConfigurationProperties("mail.template.ticket-registration")
+	public MailContentTemplate ticketRegistrationMailTemplate(){
 		return new MailContentTemplate();
 	}
 	
