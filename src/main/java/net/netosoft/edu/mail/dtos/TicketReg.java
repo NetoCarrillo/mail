@@ -1,4 +1,4 @@
-package net.netosoft.edu.mail.beans;
+package net.netosoft.edu.mail.dtos;
 
 import java.util.Date;
 
@@ -44,5 +44,15 @@ public class TicketReg extends MailModel{
 		this.inDate = inDate;
 	}
 	
-	
+	@Override
+	public String toString(){
+		return new StringBuilder().append('{')
+				.append(super.toString()).append(", ")
+				.append("ticketNumber:").append(ticketNumber).append(", ")
+				.append("parkingLot:").append(parkingLot).append(", ")
+				.append("parkingAddress:").append(parkingAddress).append(", ")
+				.append("inDate:").append(inDate)
+				.append('}')
+				.toString();
+	}
 }

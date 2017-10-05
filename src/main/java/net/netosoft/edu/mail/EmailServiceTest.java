@@ -4,11 +4,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import net.netosoft.edu.mail.config.MailContentTemplate;
-import net.netosoft.edu.mail.beans.MailModel;
-import net.netosoft.edu.mail.beans.TicketCharge;
-import net.netosoft.edu.mail.beans.TicketReg;
+import net.netosoft.edu.mail.dtos.MailModel;
+import net.netosoft.edu.mail.dtos.TicketCharge;
+import net.netosoft.edu.mail.dtos.TicketReg;
 import net.netosoft.edu.mail.service.EmailService;
-import net.netosoft.edu.mail.beans.ValidationCode;
+import net.netosoft.edu.mail.dtos.ValidationCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +57,11 @@ public class EmailServiceTest implements CommandLineRunner{
 		LOGGER.debug("Testing sendEmail");
 		
 		emailService.sendEmail(sendValidationCode());
-		emailService.sendEmail(sendSuccessfulCharge());
-		emailService.sendEmail(sendUnsuccessfulCharge());
-		emailService.sendEmail(sendTicketRegistration());
-		emailService.sendEmail(sendTicketCancellation());
 		emailService.sendEmail(sendUserRegistration());
+		emailService.sendEmail(sendTicketRegistration());
+		emailService.sendEmail(sendSuccessfulCharge());
+		emailService.sendEmail(sendTicketCancellation());
+		emailService.sendEmail(sendUnsuccessfulCharge());
 	}
 	
 	private MailModel sendValidationCode(){
@@ -74,7 +74,6 @@ public class EmailServiceTest implements CommandLineRunner{
 		
 		model.setCode("00000000");
 		
-		LOGGER.debug("{}", model);
 		return model;
 	}
 	
@@ -88,7 +87,6 @@ public class EmailServiceTest implements CommandLineRunner{
 		
 		fillCharge(model);
 
-		LOGGER.debug("{}", model);
 		return model;
 	}
 	
@@ -102,7 +100,6 @@ public class EmailServiceTest implements CommandLineRunner{
 		
 		fillCharge(model);
 
-		LOGGER.debug("{}", model);
 		return model;
 	}
 	
@@ -121,7 +118,6 @@ public class EmailServiceTest implements CommandLineRunner{
 		model.setParkingAddress("Av Insurgentes Sur");
 		model.setInDate(in);
 
-		LOGGER.debug("{}", model);
 		return model;
 	}
 	
@@ -140,7 +136,6 @@ public class EmailServiceTest implements CommandLineRunner{
 		model.setParkingAddress("Av Insurgentes Sur");
 		model.setInDate(in);
 
-		LOGGER.debug("{}", model);
 		return model;
 	}
 	
@@ -152,13 +147,12 @@ public class EmailServiceTest implements CommandLineRunner{
 		
 		fillCommonData(model, userRegistrationMailTemplate);
 
-		LOGGER.debug("{}", model);
 		return model;
 	}
 	
 	private void fillCommonData(MailModel model, MailContentTemplate contentTmpl){
-		LOGGER.debug("Subject: {}", contentTmpl.getSubject());
-		model.setEmailAddress("ernestocarrillo@anzen.com.mx,rhernandez@anzen.com.mx");
+		model.setEmailAddress("ernestocarrillo@anzen.com.mx");
+//		model.setEmailAddress("ernestocarrillo@anzen.com.mx,rhernandez@anzen.com.mx,joseluna@anzen.com.mx");
 		model.setEmailSubject(contentTmpl.getSubject());
 		model.setTemplate(contentTmpl.getPath());
 		model.setUser("Ernesto");
