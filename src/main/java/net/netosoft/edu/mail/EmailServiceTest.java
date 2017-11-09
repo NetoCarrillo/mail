@@ -3,14 +3,17 @@ package net.netosoft.edu.mail;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
 import net.netosoft.edu.mail.config.MailContentTemplate;
 import net.netosoft.edu.mail.dtos.MailModel;
 import net.netosoft.edu.mail.dtos.TicketCharge;
 import net.netosoft.edu.mail.dtos.TicketReg;
 import net.netosoft.edu.mail.service.EmailService;
 import net.netosoft.edu.mail.dtos.ValidationCode;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
